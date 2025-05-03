@@ -31,16 +31,24 @@
 
             <!-- Data Pengguna Section -->
             <li class="nav-header">users</li>
+
+            <li class="nav-item">
+                <a href="{{ route('level.index') }}" class="nav-link {{ ($activeMenu ?? '') == 'level' ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-layer-group"></i>
+                    <p>level user</p>
+                </a>
+            </li>
+{{--             
             <li class="nav-item">
                 <a href="{{ url('/level') }}" class="nav-link {{ ($activeMenu == 'level') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-layer-group"></i>
                     <p>level</p>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a href="{{ url('/user') }}" class="nav-link {{ ($activeMenu == 'user') ? 'active' : '' }}">
                     <i class="nav-icon far fa-user"></i>
-                    <p>data</p>
+                    <p>data user</p>
                 </a>
             </li>
 
@@ -67,6 +75,12 @@
                      <p>data</p>
                  </a>
              </li>
+             {{-- <li class="nav-item">
+                <a class="nav-link @yield('active_supplier')" href="{{ route('supplier.index') }}">
+                    Supplier
+                </a>
+            </li>
+             --}}
 
             <!-- Data Transaksi Section -->
             <li class="nav-header">transaksi</li>
@@ -77,9 +91,16 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('/barang') }}" class="nav-link {{ ($activeMenu == 'penjualan') ? 'active' : '' }}">
+                <a href="{{ url('/penjualan') }}" class="nav-link {{ ($activeMenu == 'penjualan') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-cash-register"></i>
                     <p>penjualan</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ url('/penjualan-detail') }}" class="nav-link {{ ($activeMenu == 'penjualandetail') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-cash-register"></i>
+                    <p>penjualan detail</p>
                 </a>
             </li>
 
