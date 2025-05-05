@@ -10,12 +10,19 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PenjualanDetailController;
+use App\Http\Controllers\AuthController;
 
-
+Route::pattern('id', '[0-9]+');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/postlogin', [AuthController::class, 'postlogin']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [WelcomeController::class, 'index'])->name('Welcome');
 
-Route::prefix('level')->name('level.')->group(function () {
+Route::middleware('auth')->group(function () {
+
+ Route::prefix('level')->name('level.')->group(function () {
+// Route::middleware(['authorize:ADM'])->group(function () {
     Route::get('/', [LevelController::class, 'index'])->name('index');
     Route::get('/create', [LevelController::class, 'create'])->name('create');
     Route::post('/', [LevelController::class, 'store'])->name('store');
@@ -23,6 +30,10 @@ Route::prefix('level')->name('level.')->group(function () {
     Route::get('/{level}/edit', [LevelController::class, 'edit'])->name('edit');
     Route::match(['put', 'patch'], '/{level}', [LevelController::class, 'update'])->name('update');
     Route::delete('/{level}', [LevelController::class, 'destroy'])->name('destroy');
+
+    // Route::post('level/import', [LevelController::class, 'importExcel'])->name('level.import.excel');
+    // Route::get('level/export/excel', [LevelController::class, 'exportExcel'])->name('level.export.excel');
+    // Route::get('level/export/pdf', [LevelController::class, 'exportPdf'])->name('level.export.pdf');
 });
 
 Route::prefix('user')->name('user.')->group(function () {
@@ -34,6 +45,11 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::match(['put', 'patch'], '/{level}', [UserController::class, 'update'])->name('update');
     Route::delete('/{level}', [UserController::class, 'destroy'])->name('destroy');
 });
+
+// register
+Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [UserController::class, 'register']);
+
 
 Route::prefix('kategori')->name('kategori.')->group(function () {
     Route::get('/', [KategoriController::class, 'index'])->name('index');
@@ -93,4 +109,5 @@ Route::prefix('penjualan-detail')->name('penjualan-detail.')->group(function () 
     Route::get('/{id}/edit', [PenjualanDetailController::class, 'edit'])->name('edit');
     Route::put('/{id}', [PenjualanDetailController::class, 'update'])->name('update');
     Route::delete('/{id}', [PenjualanDetailController::class, 'destroy'])->name('destroy');
+});
 });

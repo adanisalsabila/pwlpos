@@ -6,11 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class UserModel extends Model
+class UserModel extends Authenticatable
 {
     use HasFactory;
-
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
     protected $table = 'm_user';
     protected $primaryKey = 'user_id';
     public $timestamps = true;
@@ -21,6 +30,10 @@ class UserModel extends Model
         'password',
     ];
 
+    protected $hidden = ['password']; 
+
+    protected $casts = ['password' => 'hashed'];
+
     /**
      * Mendapatkan level dari user ini.
      *
@@ -29,6 +42,22 @@ class UserModel extends Model
     public function level(): BelongsTo
     {
         return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
+    }
+
+    /**
+ * Mendapatkan nama role
+ */
+    public function getRoleName(): string
+    {
+        return $this->level->level_nama;
+    }
+
+    /**
+     * Cek apakah user memiliki role tertentu
+     */
+    public function hasRole($role): bool
+    {
+        return $this->level->level_kode == $role;
     }
 
     /**

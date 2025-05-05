@@ -2,23 +2,27 @@
 
 @section('content')
 <div class="container-fluid">
-    <h1>Daftar User</h1>
-    <a href="{{ route('user.create') }}" class="btn btn-primary mb-3">Tambah User</a>
-
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Nama</th>
-                <th>Level</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
+ <div class="row">
+ <div class="col-12">
+ <div class="card">
+ <div class="card-header">
+ <h3 class="card-title">Daftar User</h3>
+ <a href="{{ route('user.create') }}" class="btn btn-primary float-right">Tambah User</a>
+ </div>
+ <div class="card-body">
+ @if(session('success'))
+ <div class="alert alert-success">{{ session('success') }}</div>
+ @endif
+ <table class="table table-bordered table-hover">
+ <thead>
+ <tr>
+ <th>Username</th>
+ <th>Nama</th>
+ <th>Level</th>
+ <th>Aksi</th>
+ </tr>
+ </thead>
+ <tbody>
             @foreach($users as $u)
             <tr>
                 <td>{{ $u->username }}</td>

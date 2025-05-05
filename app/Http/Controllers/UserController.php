@@ -94,4 +94,36 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('user.index')->with('success', 'User berhasil dihapus.');
     }
+
+    // Tampilkan form register
+public function showRegisterForm()
+{
+    $levels = LevelModel::all(); // Jika ingin user pilih level
+    return view('auth.register', [
+        'levels' => $levels,
+        'activeMenu' => ''
+    ]);
+}
+
+// Proses register
+public function register(Request $request)
+{
+    $request->validate([
+        'username' => 'required|string|max:20|unique:m_user,username',
+        'nama' => 'required|string|max:100',
+        'password' => 'required|string|min:6|confirmed', // password_confirmation field
+    ]);
+
+    $user = UserModel::create([
+        'level_id' => 2, // Default: user biasa (ganti sesuai level_id user)
+        'username' => $request->username,
+        'nama' => $request->nama,
+        'password' => Hash::make($request->password),
+    ]);
+
+    // Login otomatis setelah register (opsional)
+    auth()->login($user);
+
+    return redirect()->route('dashboard')->with('success', 'Registrasi berhasil!');
+    }
 }

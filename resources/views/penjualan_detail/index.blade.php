@@ -2,27 +2,35 @@
 
 @section('content')
 <div class="container-fluid">
-    <h1>Data Detail Penjualan</h1>
-    <a href="{{ route('penjualan-detail.create') }}" class="btn btn-primary mb-3">Tambah Detail Penjualan</a>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Data Detail Penjualan</h3>
+                </div>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+                <div class="button">
+                <br> <a href="{{ route('penjualan-detail.create') }}" class="btn btn-primary float-right">tambah</a>
+                </div>
 
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Kode Penjualan</th>
-                    <th>Nama Barang</th>
-                    <th>Harga</th>
-                    <th>Jumlah</th>
-                    <th>Subtotal</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
+                <div class="card-body">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Kode Penjualan</th>
+                                    <th>Nama Barang</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah</th>
+                                    <th>Subtotal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                 @forelse ($penjualanDetails as $detail)
                     <tr>
                         <td>{{ $detail->detail_id }}</td>

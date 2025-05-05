@@ -2,24 +2,28 @@
 
 @section('content')
 <div class="container-fluid">
-    <h4>Data Supplier</h4>
-    <a href="{{ route('supplier.create') }}" class="btn btn-primary mb-3">Tambah Supplier</a>
-
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Kode</th>
-                <th>Nama</th>
-                <th>Telepon</th>
-                <th>Email</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Data Supplier</h3>
+                    <a href="{{ route('supplier.create') }}" class="btn btn-primary float-right">Tambah Supplier</a>
+                </div>
+                <div class="card-body">
+                    @if (session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kode Supplier</th>
+                                <th>Nama Supplier</th>
+                                <th>Telepon</th>
+                                <th>Email</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
             @foreach ($data as $row)
                 <tr>
                     <td>{{ $row->supplier_kode }}</td>

@@ -2,26 +2,30 @@
 
 @section('content')
 <div class="container-fluid">
-    <h1>Data Penjualan</h1>
-    <a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Tambah Penjualan</a>
-
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Kode Penjualan</th>
-                    <th>Pembeli</th>
-                    <th>Tanggal Penjualan</th>
-                    <th>Kasir</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Data Penjualan</h3>
+                    <a href="{{ route('penjualan.create') }}" class="btn btn-primary float-right">Tambah Penjualan</a>
+                </div>
+                <div class="card-body">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Kode Penjualan</th>
+                                    <th>Pembeli</th>
+                                    <th>Tanggal Penjualan</th>
+                                    <th>Kasir</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                 @forelse ($penjualans as $penjualan)
                     <tr>
                         <td>{{ $penjualan->penjualan_id }}</td>

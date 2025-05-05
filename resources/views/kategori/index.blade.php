@@ -2,22 +2,26 @@
 
 @section('content')
 <div class="container-fluid">
-    <h1>Daftar Kategori</h1>
-    <a href="{{ route('kategori.create') }}" class="btn btn-primary mb-3">Tambah Kategori</a>
-
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Kode</th>
-                <th>Nama</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Daftar Kategori</h1>
+                    <a href="{{ route('kategori.create') }}" class="btn btn-primary float-right">Tambah Kategori</a>
+                </div>
+                <div class="card-body">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kode Kategori</th>
+                                <th>Nama Kategori</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
             @foreach($kategori as $k)
             <tr>
                 <td>{{ $k->kategori_kode }}</td>
