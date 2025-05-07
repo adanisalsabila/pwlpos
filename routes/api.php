@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\LogoutController; // Tambahkan ini
 use Illuminate\Http\Request;
 
 Route::post('/register', [RegisterController::class, '__invoke'])->name('api.register');
 Route::post('/login', [LoginController::class, '__invoke'])->name('api.login');
+Route::post('/logout', [LogoutController::class, '__invoke'])->name('api.logout'); // Tambahkan baris ini
 
 // Cek user yang login
 Route::middleware('auth:api')->get('/user', function (Request $request) {
