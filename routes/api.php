@@ -1,18 +1,17 @@
 <?php
 
-use App\Http\Controllers\Api\RegisterController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\LoginController;
+use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+Route::post('/register', [RegisterController::class, '__invoke'])->name('api.register');
+Route::post('/login', [LoginController::class, '__invoke'])->name('api.login');
 
-Route::post('/register', [RegisterController::class, '__invoke'])->name('register');
+// Cek user yang login
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return response()->json([
+        'success' => true,
+        'user' => $request->user(),
+    ]);
+});

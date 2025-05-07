@@ -11,6 +11,16 @@ use App\Http\Controllers\StokController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PenjualanDetailController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\LoginController;
+use Illuminate\Http\Request;
+
+// API Routes
+// Route::post('/api/register', [RegisterController::class, '__invoke'])->name('api.register');
+// Route::post('/api/login', [LoginController::class, '__invoke'])->name('api.login');
+// Route::middleware('auth:api')->get('/api/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::pattern('id', '[0-9]+');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
