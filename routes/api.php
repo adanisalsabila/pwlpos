@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\LoginController;
@@ -7,7 +8,8 @@ use App\Http\Controllers\Api\LogoutController; // Tambahkan ini
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\LevelController;
 
-Route::post('/register', [RegisterController::class, '__invoke'])->name('api.register');
+// Route::post('/register', [RegisterController::class, '__invoke'])->name('api.register');
+Route::post('/register1', RegisterController::class)->name('api.register1');
 Route::post('/login', [LoginController::class, '__invoke'])->name('api.login');
 Route::post('/logout', [LogoutController::class, '__invoke'])->name('api.logout'); // Tambahkan baris ini
 
